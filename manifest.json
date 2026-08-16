@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Log45 - Hatalı Network İstekleri",
+  "version": "0.1.0",
+  "description": "Hatalı network isteklerini listeler ve panoya kopyalar.",
+  "permissions": [],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "devtools_page": "devtools.html"
+}
