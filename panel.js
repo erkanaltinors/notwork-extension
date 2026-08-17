@@ -57,7 +57,6 @@ clearBtn.addEventListener('click', clearErrors);
 
 function render(errors) {
   results.innerHTML = '';
-  showLoading(false);
   if (!errors || errors.length === 0) {
     results.textContent = 'Hatalı istek tespit edilemedi';
     return;
@@ -145,10 +144,8 @@ function formatEntry(e) {
 
 function snapshotAndList() {
   results.innerHTML = '';
-  showLoading(true, 'Anlık HAR alınıyor…');
   // sendMessageWithRetry will attempt to send and handle transient errors
   sendMessageWithRetry({ action: 'getSnapshot' }, (err, res) => {
-    showLoading(false);
     if (err) {
       results.textContent = err.message || String(err);
       return;
@@ -207,15 +204,3 @@ function clearErrors() {
   try { results.innerHTML = ''; } catch (e) { }
 }
 
-function showLoading(on, text) {
-  try {
-    if (!loadingEl) return;
-    if (on) {
-      loadingEl.classList.add('active');
-      if (text) loadingText.textContent = text;
-    } else {
-      loadingEl.classList.remove('active');
-      if (text) loadingText.textContent = text;
-    }
-  } catch (e) { }
-}
